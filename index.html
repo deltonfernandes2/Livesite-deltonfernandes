@@ -346,9 +346,9 @@
     <section id="work">
       <div class="section-title">
         <h2>Selected Work</h2>
-        <div class="toolbar">
+        <!-- <div class="toolbar">
           <input class="search" id="search" placeholder="Search (e.g., “img3” or “look 7”)…" />
-        </div>
+        </div> -->
       </div>
 
       <div class="grid" id="grid"></div>
@@ -428,12 +428,12 @@
     // =======================
 
     // Build image list img1..img10
-    const photos = Array.from({ length: 10 }, (_, i) => {
+    const photos = Array.from({ length: 12 }, (_, i) => {
       const n = i + 1;
       return {
-        id: `img${n}`,
-        src: `img${n}.${IMAGE_EXTENSION}`,
-        title: `Look ${n}`,
+        id: `${n}`,
+        src: `${n}.${IMAGE_EXTENSION}`,
+        title: `${n}`,
         meta: `img${n}`
       };
     });
