@@ -1,142 +1,562 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Delton Fernandes | Portfolio</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Model Portfolio</title>
+  <meta name="description" content="Modeling portfolio gallery and contact." />
   <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #f9f9f9;
-      color: #333;
+    :root{
+      --bg:#0b0c10;
+      --panel:#11131a;
+      --text:#f5f6f7;
+      --muted:#b5b9c6;
+      --line:rgba(255,255,255,.08);
+      --accent:#8af0ff;
+      --shadow: 0 20px 50px rgba(0,0,0,.45);
+      --radius: 22px;
     }
-    header {
-      background: #0f172a;
-      color: #fff;
-      padding: 3rem 1rem;
-      text-align: center;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(138,240,255,.12), transparent 60%),
+        radial-gradient(900px 500px at 80% 0%, rgba(177,132,255,.12), transparent 55%),
+        radial-gradient(900px 600px at 50% 120%, rgba(255,138,203,.10), transparent 55%),
+        var(--bg);
+      overflow-x:hidden;
     }
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
+    a{color:inherit}
+    .wrap{max-width:1100px;margin:0 auto;padding:24px}
+    header{
+      position:sticky; top:0; z-index:50;
+      background: linear-gradient(to bottom, rgba(11,12,16,.92), rgba(11,12,16,.55), transparent);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
     }
-    header p {
-      font-size: 1.1rem;
-      color: #cbd5e1;
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:16px;
+      padding:16px 24px;
+      max-width:1100px;
+      margin:0 auto;
     }
-    section {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 0 1rem;
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      font-size:12px;
+      color:var(--muted);
     }
-    h2 {
-      border-bottom: 2px solid #e2e8f0;
-      padding-bottom: 0.5rem;
+    .dot{
+      width:10px;height:10px;border-radius:999px;
+      background: radial-gradient(circle at 30% 30%, var(--accent), rgba(138,240,255,.2));
+      box-shadow: 0 0 0 6px rgba(138,240,255,.08);
     }
-    .skills, .projects {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
+    .navlinks{display:flex; gap:14px; flex-wrap:wrap}
+    .navlinks a{
+      text-decoration:none;
+      font-size:13px;
+      color:var(--muted);
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid transparent;
     }
-    .skill, .project {
-      background: #fff;
-      padding: 1rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-      flex: 1 1 45%;
+    .navlinks a:hover{
+      color:var(--text);
+      border-color:var(--line);
+      background: rgba(255,255,255,.03);
     }
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
-      color: #666;
-      background: #f1f5f9;
+
+    .hero{
+      padding:56px 0 30px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:22px;
+      align-items:stretch;
     }
-    a {
-      color: #2563eb;
-      text-decoration: none;
+    @media (max-width: 880px){
+      .hero{grid-template-columns: 1fr; padding-top:36px}
     }
-    a:hover {
-      text-decoration: underline;
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
     }
-    @media (max-width: 600px) {
-      .skill, .project {
-        flex: 1 1 100%;
-      }
+    .hero .left{
+      padding:28px;
+      overflow:hidden;
+      position:relative;
     }
+    .hero h1{
+      margin:0 0 10px;
+      font-size: clamp(32px, 4vw, 48px);
+      line-height:1.05;
+      letter-spacing:-.02em;
+    }
+    .hero p{
+      margin:0 0 18px;
+      color:var(--muted);
+      max-width:56ch;
+      line-height:1.55;
+      font-size:15px;
+    }
+    .pills{display:flex; flex-wrap:wrap; gap:10px; margin:14px 0 18px}
+    .pill{
+      font-size:12px; color:var(--muted);
+      border:1px solid var(--line);
+      padding:8px 10px;
+      border-radius:999px;
+      background: rgba(255,255,255,.02);
+    }
+    .actions{display:flex; gap:12px; flex-wrap:wrap; margin-top:16px}
+    .btn{
+      cursor:pointer;
+      border:none;
+      padding:12px 14px;
+      border-radius: 999px;
+      font-weight:600;
+      font-size:13px;
+      letter-spacing:.01em;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      transition: transform .12s ease, filter .12s ease;
+      user-select:none;
+    }
+    .btn:active{transform: translateY(1px)}
+    .btn.primary{
+      background: radial-gradient(circle at 30% 20%, rgba(138,240,255,.95), rgba(138,240,255,.55));
+      color:#031014;
+      filter: drop-shadow(0 12px 28px rgba(138,240,255,.20));
+    }
+    .btn.ghost{
+      background: rgba(255,255,255,.04);
+      color:var(--text);
+      border:1px solid var(--line);
+    }
+    .btn:hover{filter: brightness(1.07)}
+    .hero .right{
+      padding:14px;
+      display:grid;
+      gap:12px;
+    }
+    .mini{
+      padding:16px;
+      border-radius: 18px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+    }
+    .mini h3{margin:0 0 6px; font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted)}
+    .mini .big{font-size:18px; margin:0 0 6px}
+    .mini .small{margin:0; color:var(--muted); font-size:13px; line-height:1.5}
+
+    .section-title{
+      margin:34px 0 14px;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:14px; flex-wrap:wrap;
+    }
+    .section-title h2{margin:0; font-size:18px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted)}
+    .toolbar{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+    .search{
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      padding:10px 12px;
+      color:var(--text);
+      outline:none;
+      width:min(340px, 80vw);
+      font-size:13px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:12px;
+    }
+    .tile{
+      grid-column: span 4;
+      border-radius: 18px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.02);
+      position:relative;
+      cursor:pointer;
+      transition: transform .14s ease, filter .14s ease;
+      min-height: 220px;
+    }
+    .tile:hover{transform: translateY(-2px); filter: brightness(1.04)}
+    @media (max-width: 980px){ .tile{grid-column: span 6} }
+    @media (max-width: 620px){ .tile{grid-column: span 12} }
+
+    .tile img{
+      width:100%; height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    .cap{
+      position:absolute; left:12px; right:12px; bottom:12px;
+      background: linear-gradient(180deg, transparent, rgba(0,0,0,.65));
+      padding:26px 12px 12px;
+      border-radius: 14px;
+      color:#fff;
+      opacity:0;
+      transform: translateY(6px);
+      transition: opacity .14s ease, transform .14s ease;
+    }
+    .tile:hover .cap{opacity:1; transform: translateY(0)}
+    .cap .name{font-weight:700; font-size:13px; margin:0}
+    .cap .meta{margin:4px 0 0; font-size:12px; color: rgba(255,255,255,.75)}
+
+    footer{
+      margin:40px 0 16px;
+      color:var(--muted);
+      font-size:13px;
+      display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
+      border-top:1px solid var(--line);
+      padding-top:18px;
+    }
+
+    /* Lightbox */
+    .lightbox{
+      position:fixed; inset:0;
+      display:none;
+      place-items:center;
+      background: rgba(0,0,0,.72);
+      backdrop-filter: blur(10px);
+      z-index:100;
+      padding:18px;
+    }
+    .lightbox.open{display:grid}
+    .lb-card{
+      width:min(1100px, 96vw);
+      max-height: 88vh;
+      border-radius: 22px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      background: rgba(10,10,14,.75);
+      box-shadow: var(--shadow);
+      display:grid;
+      grid-template-columns: 1fr 320px;
+    }
+    @media (max-width: 880px){
+      .lb-card{grid-template-columns: 1fr}
+    }
+    .lb-img{
+      background:#000;
+      display:grid;
+      place-items:center;
+    }
+    .lb-img img{
+      width:100%;
+      height:100%;
+      max-height: 88vh;
+      object-fit: contain;
+      display:block;
+    }
+    .lb-side{
+      padding:16px;
+      border-left:1px solid var(--line);
+    }
+    @media (max-width: 880px){
+      .lb-side{border-left:none; border-top:1px solid var(--line)}
+    }
+    .lb-top{
+      display:flex; justify-content:space-between; align-items:center; gap:10px;
+      margin-bottom:10px;
+    }
+    .xbtn{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color:var(--text);
+      border-radius: 12px;
+      padding:8px 10px;
+      cursor:pointer;
+      font-weight:700;
+    }
+    .lb-title{margin:0; font-size:14px; color:var(--muted); letter-spacing:.06em; text-transform:uppercase}
+    .lb-name{margin:10px 0 6px; font-size:18px}
+    .lb-desc{margin:0; color:var(--muted); font-size:13px; line-height:1.55}
+    .lb-actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+    .navbtn{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color:var(--text);
+      border-radius:999px;
+      padding:10px 12px;
+      cursor:pointer;
+      font-weight:650;
+      font-size:13px;
+    }
+    .hint{margin-top:10px; color:rgba(181,185,198,.8); font-size:12px}
   </style>
 </head>
-<body>
 
+<body>
   <header>
-    <h1>Delton Fernandes</h1>
-    <p>Azure Integration Developer | Cloud Enthusiast | Problem Solver</p>
+    <div class="nav">
+      <div class="brand"><span class="dot"></span><span id="brandName">YOUR NAME</span></div>
+      <nav class="navlinks">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
   </header>
 
-  <section>
-    <h2>About Me</h2>
-    <p>
-      I'm a passionate developer with a strong focus on Azure cloud technologies, integration platforms,
-      and automation using Logic Apps, Azure Functions, and Service Bus.
-      I enjoy solving complex business problems with simple, scalable solutions.
-    </p>
-  </section>
+  <main class="wrap">
+    <section class="hero">
+      <div class="card left">
+        <h1 id="headline">YOUR NAME</h1>
+        <p id="tagline">
+          Editorial • Commercial • Lifestyle. A simple portfolio that lets the photos do the talking.
+        </p>
 
-  <section>
-    <h2>Skills</h2>
-    <div class="skills">
-      <div class="skill">
-        <h3>Azure Integration</h3>
-        <p>Logic Apps, Azure Functions, APIM, Data Factory, Key Vault</p>
+        <div class="pills">
+          <span class="pill">London / UK</span>
+          <span class="pill">Available for bookings</span>
+          <span class="pill">TFP: Select</span>
+        </div>
+
+        <div class="actions">
+          <a class="btn primary" href="#contact">Book me ✨</a>
+          <a class="btn ghost" href="#work">View gallery</a>
+        </div>
       </div>
-      <div class="skill">
-        <h3>Backend & Automation</h3>
-        <p>C#, Python, Service Bus, Event Grid, Webhooks</p>
+
+      <div class="card right">
+        <div class="mini">
+          <h3>Measurements</h3>
+          <p class="big">Height: 5'10" • Bust: 0 • Waist: 0 • Hips: 0</p>
+          <p class="small">Update these with your real stats (or remove this box if you prefer).</p>
+        </div>
+        <div class="mini">
+          <h3>Social</h3>
+          <p class="big"><a href="https://www.instagram.com/_deltonfernandes_" id="instaLink">Instagram</a> • <a href="#" id="tiktokLink">TikTok</a></p>
+          <p class="small">Add your links so casting and brands can find you instantly.</p>
+        </div>
       </div>
-      <div class="skill">
-        <h3>Frontend & Low Code</h3>
-        <p>React, TypeScript, Vite, TailwindCSS, PowerApps</p>
+    </section>
+
+    <section id="work">
+      <div class="section-title">
+        <h2>Selected Work</h2>
+        <div class="toolbar">
+          <input class="search" id="search" placeholder="Search (e.g., “img3” or “look 7”)…" />
+        </div>
       </div>
-      <div class="skill">
-        <h3>Tools & DevOps</h3>
-        <p>Docker, GitHub Actions, Azure DevOps, Bicep, CI/CD</p>
+
+      <div class="grid" id="grid"></div>
+    </section>
+
+    <section id="about" class="wrap" style="padding:0">
+      <div class="section-title">
+        <h2>About</h2>
+      </div>
+      <div class="card" style="padding:22px">
+        <p style="margin:0;color:var(--muted);line-height:1.7;font-size:14px;max-width:80ch">
+          Write a short bio here: your vibe, the kind of work you love, and where you’re based.
+          Keep it crisp, like a caption that knows it’s being watched 👁️.
+        </p>
+      </div>
+    </section>
+
+    <section id="contact" class="wrap" style="padding:0">
+      <div class="section-title">
+        <h2>Contact</h2>
+      </div>
+      <div class="card" style="padding:22px">
+        <p style="margin:0 0 14px;color:var(--muted);line-height:1.7;font-size:14px">
+          For bookings, collaborations, or castings, reach out:
+        </p>
+
+        <div style="display:flex;flex-wrap:wrap;gap:12px">
+          <a class="btn primary" id="emailBtn" href="mailto:you@example.com?subject=Booking%20Inquiry">Email me 📩</a>
+          <a class="btn ghost" id="phoneBtn" href="tel:+440000000000">Call / WhatsApp ☎️</a>
+        </div>
+
+        <p style="margin:14px 0 0;color:rgba(181,185,198,.85);font-size:12px">
+          Tip: update the email + phone inside the HTML so these buttons work.
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      <div>© <span id="year"></span> <span id="footerName">DELTON FERNANDES</span></div>
+      <div>Built with pixels and patience.</div>
+    </footer>
+  </main>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lb-card" role="dialog" aria-modal="true">
+      <div class="lb-img">
+        <img id="lbImg" alt="Selected photo" />
+      </div>
+      <div class="lb-side">
+        <div class="lb-top">
+          <p class="lb-title">Preview</p>
+          <button class="xbtn" id="closeBtn" aria-label="Close">✕</button>
+        </div>
+
+        <h3 class="lb-name" id="lbName">Look</h3>
+        <p class="lb-desc" id="lbDesc">Use arrows to navigate. Tap outside to close.</p>
+
+        <div class="lb-actions">
+          <button class="navbtn" id="prevBtn">← Prev</button>
+          <button class="navbtn" id="nextBtn">Next →</button>
+        </div>
+
+        <div class="hint">Keyboard: ← → • Esc</div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section>
-    <h2>Projects</h2>
-    <div class="projects">
-      <div class="project">
-        <h3>Digital Wardrobe App</h3>
-        <p>React-based app with outfit builder, filters, and tagging system.</p>
-      </div>
-      <div class="project">
-        <h3>HR System Integration</h3>
-        <p>Built a middleware using Logic Apps and Azure Functions to sync PeopleXD with PinpointHQ.</p>
-      </div>
-      <div class="project">
-        <h3>Baptism Event Gallery</h3>
-        <p>Media sharing site with image upload and secure access using federated identity.</p>
-      </div>
-      <div class="project">
-        <h3>Excel Transformation Tool</h3>
-        <p>Python tool for data migration with column mapping, lookup, and CSV generation.</p>
-      </div>
-    </div>
-  </section>
+  <script>
+    // ====== EDIT THESE ======
+    const MODEL_NAME = "DELTON FERNANDES";
+    const EMAIL = "fdelton2001@gmail.com";
+    const PHONE = "+44 7487895716"; // include country code
+    const INSTAGRAM_URL = "https://instagram.com/_deltonfernandes_";
+    const TIKTOK_URL = "https://tiktok.com/@";
+    const IMAGE_EXTENSION = "jpg"; // change to "png" if needed
+    // =======================
 
-  <section>
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:you@example.com">you@example.com</a></p>
-    <p>GitHub: <a href="https://github.com/yourusername" target="_blank">github.com/yourusername</a></p>
-    <p>LinkedIn: <a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></p>
-  </section>
+    // Build image list img1..img10
+    const photos = Array.from({ length: 10 }, (_, i) => {
+      const n = i + 1;
+      return {
+        id: `img${n}`,
+        src: `img${n}.${IMAGE_EXTENSION}`,
+        title: `Look ${n}`,
+        meta: `img${n}`
+      };
+    });
 
-  <footer>
-    © 2025 Delton Fernandes • Website crafted with ✨ by ChatGPT
-  </footer>
+    // Inject header text
+    document.getElementById("brandName").textContent = MODEL_NAME;
+    document.getElementById("headline").textContent = MODEL_NAME;
+    document.getElementById("footerName").textContent = MODEL_NAME;
+    document.getElementById("year").textContent = new Date().getFullYear();
 
+    // Contact links
+    const emailBtn = document.getElementById("emailBtn");
+    emailBtn.href = `mailto:${EMAIL}?subject=Booking%20Inquiry`;
+    emailBtn.textContent = `Email me 📩 (${EMAIL})`;
+
+    const phoneBtn = document.getElementById("phoneBtn");
+    phoneBtn.href = `tel:${PHONE}`;
+    phoneBtn.textContent = `Call / WhatsApp ☎️ (${PHONE})`;
+
+    const insta = document.getElementById("instaLink");
+    insta.href = INSTAGRAM_URL;
+    insta.target = "_blank";
+    insta.rel = "noreferrer";
+
+    const tiktok = document.getElementById("tiktokLink");
+    tiktok.href = TIKTOK_URL;
+    tiktok.target = "_blank";
+    tiktok.rel = "noreferrer";
+
+    // Render grid
+    const grid = document.getElementById("grid");
+    function render(items){
+      grid.innerHTML = "";
+      items.forEach((p, idx) => {
+        const tile = document.createElement("div");
+        tile.className = "tile";
+        tile.tabIndex = 0;
+        tile.setAttribute("data-index", idx);
+
+        tile.innerHTML = `
+          <img src="${p.src}" alt="${p.title}" loading="lazy" />
+          <div class="cap">
+            <p class="name">${p.title}</p>
+            <p class="meta">${p.meta}</p>
+          </div>
+        `;
+
+        tile.addEventListener("click", () => openLightbox(idx, items));
+        tile.addEventListener("keydown", (e) => {
+          if(e.key === "Enter" || e.key === " ") openLightbox(idx, items);
+        });
+
+        grid.appendChild(tile);
+      });
+    }
+    render(photos);
+
+    // Search
+    const search = document.getElementById("search");
+    search.addEventListener("input", () => {
+      const q = search.value.trim().toLowerCase();
+      const filtered = photos.filter(p =>
+        p.id.toLowerCase().includes(q) ||
+        p.title.toLowerCase().includes(q) ||
+        p.meta.toLowerCase().includes(q)
+      );
+      render(filtered);
+    });
+
+    // Lightbox
+    const lightbox = document.getElementById("lightbox");
+    const lbImg = document.getElementById("lbImg");
+    const lbName = document.getElementById("lbName");
+    const lbDesc = document.getElementById("lbDesc");
+    const closeBtn = document.getElementById("closeBtn");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    let current = 0;
+    let currentList = photos;
+
+    function show(i){
+      const p = currentList[i];
+      lbImg.src = p.src;
+      lbName.textContent = p.title;
+      lbDesc.textContent = `File: ${p.src}`;
+      current = i;
+    }
+
+    function openLightbox(i, list){
+      currentList = list;
+      lightbox.classList.add("open");
+      lightbox.setAttribute("aria-hidden", "false");
+      show(i);
+    }
+
+    function closeLightbox(){
+      lightbox.classList.remove("open");
+      lightbox.setAttribute("aria-hidden", "true");
+      lbImg.src = "";
+    }
+
+    function prev(){
+      show((current - 1 + currentList.length) % currentList.length);
+    }
+    function next(){
+      show((current + 1) % currentList.length);
+    }
+
+    closeBtn.addEventListener("click", closeLightbox);
+    prevBtn.addEventListener("click", prev);
+    nextBtn.addEventListener("click", next);
+
+    lightbox.addEventListener("click", (e) => {
+      if(e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if(!lightbox.classList.contains("open")) return;
+      if(e.key === "Escape") closeLightbox();
+      if(e.key === "ArrowLeft") prev();
+      if(e.key === "ArrowRight") next();
+    });
+  </script>
 </body>
 </html>
