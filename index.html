@@ -423,16 +423,16 @@
     const PHONE = "+44 7487895716"; // include country code
     const INSTAGRAM_URL = "https://instagram.com/_deltonfernandes_";
     // const TIKTOK_URL = "https://tiktok.com/@";
-    const IMAGE_EXTENSION = "jpg"; // change to "png" if needed
+    const IMAGE_EXTENSION = "JPG"; // change to "png" if needed
     // =======================
 
     // Build image list img1..img10
     const photos = Array.from({ length: 12 }, (_, i) => {
       const n = i + 1;
       return {
-        id: `${n}`,
-        src: `${n}.${IMAGE_EXTENSION}`,
-        title: `${n}`,
+        id: `img${n}`,
+        src: `https://raw.githubusercontent.com/deltonfernandes2/Livesite-deltonfernandes/refs/heads/ModelingPortfolio/${n}.${IMAGE_EXTENSION}`,
+        title: `img${n}`,
         meta: `img${n}`
       };
     });
